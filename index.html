@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day ❤️</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1 {
+            margin-top: 50px;
+            font-size: 3rem;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            transform: rotate(-45deg);
+            animation: float 5s linear infinite;
+        }
+
+        .heart::before, .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+        }
+
+        .heart::before { top: -10px; left: 0; }
+        .heart::after { left: 10px; top: 0; }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { transform: translateY(-100vh) rotate(-45deg); opacity: 0; }
+        }
+
+        .message {
+            margin-top: 30px;
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        .love-letter {
+            display: none;
+            margin-top: 30px;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 1s ease-in-out, transform 0.5s ease-in-out;
+        }
+
+        .surprise-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            background: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .show-surprise {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Valentine's Day, My Love! ❤️</h1>
+    
+    <div class="hearts"></div>
+    
+    <p class="message">You are the reason my world is so full of love and happiness. Every day with you is a blessing, and I cherish every moment we share. You are my forever Valentine! 💕</p>
+
+    <button class="surprise-btn" onclick="showSurprise()">Click for a Surprise 💖</button>
+
+    <div class="love-letter" id="loveLetter">
+        <p>My Love,</p>
+        <p>From the moment I met you, my heart knew you were the one. You are my sunshine on a cloudy day, my safe place, and my greatest adventure. I cherish every smile, every laugh, and every moment spent with you. 💖</p>
+        <p>No words can truly capture how much you mean to me. You are my heart, my soul, and my forever. Every heartbeat whispers your name, and every dream I have is wrapped in your love. You make my world brighter, and I promise to love you more each and every day. ❤️</p>
+        <p>Yours forever and always,</p>
+        <p>💘</p>
+    </div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            document.querySelector(".hearts").appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+
+        function showSurprise() {
+            const loveLetter = document.getElementById("loveLetter");
+            loveLetter.classList.add("show-surprise");
+        }
+    </script>
+</body>
+</html>
