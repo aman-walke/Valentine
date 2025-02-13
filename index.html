@@ -46,6 +46,36 @@
             50% { opacity: 0.7; }
             100% { transform: translateY(-100vh) rotate(-45deg); opacity: 0; }
         }
+        .big-heart {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: red;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg) scale(0);
+            opacity: 0;
+            animation: bigHeart 2s ease-in-out forwards;
+        }
+        .big-heart::before, .big-heart::after {
+            content: "";
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: red;
+            border-radius: 50%;
+        }
+        .big-heart::before { top: -75px; left: 0; }
+        .big-heart::after { left: 75px; top: 0; }
+        @keyframes bigHeart {
+            0% { transform: translate(-50%, -50%) rotate(-45deg) scale(0); opacity: 0; }
+            50% { transform: translate(-50%, -50%) rotate(-45deg) scale(1.2); opacity: 1; }
+            100% { transform: translate(-50%, -50%) rotate(-45deg) scale(1); opacity: 1; }
+        }
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; transform: scale(0); }
+        }
         .surprise-btn {
             margin-top: 20px;
             padding: 15px 25px;
@@ -64,23 +94,12 @@
         .show-content h1, .show-content .message, .show-content .love-letter {
             display: block;
         }
-        .love-letter {
-            margin-top: 30px;
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            background: rgba(255, 255, 255, 0.3);
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 0 15px rgba(0,0,0,0.3);
-        }
     </style>
 </head>
 <body>
     <div class="hearts"></div>
     <button class="surprise-btn" onclick="showContent()">Click for a Surprise 💖</button>
+    <div class="big-heart" id="bigHeart"></div>
     <h1>Happy Valentine's Day, My Love! ❤️</h1>
     <p class="message">You make my world brighter, my heart fuller, and my life more beautiful. Every moment with you is a fairytale come true! 💕</p>
     <div class="love-letter">
@@ -103,6 +122,11 @@
         setInterval(createHeart, 300);
         function showContent() {
             document.body.classList.add("show-content");
+            const bigHeart = document.getElementById("bigHeart");
+            bigHeart.style.animation = "bigHeart 2s ease-in-out forwards";
+            setTimeout(() => {
+                bigHeart.style.animation = "fadeOut 1.5s ease-in-out forwards";
+            }, 2000);
         }
     </script>
 </body>
